@@ -13,6 +13,11 @@ RECORD = ["Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234", "Enter u
 user_data = {}
 
 
+def chat_output(user_log):
+    output_string = ""
+    return output_string
+
+
 def enter_chat(user_log):
     '''유저 아이디를 인식해서 출력해줌.'''
 
@@ -39,6 +44,7 @@ def change_chat(user_log):
 
     user_id = data_split[1]
     user_name = data_split[2]
+
 
 
 def solution(record):
