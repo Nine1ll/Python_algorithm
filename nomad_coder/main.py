@@ -20,26 +20,39 @@ def extract_jobs(term):
     request = get(url, headers={"User-Agent": "Nine1ll"})
 
     if request.status_code == 200:
+        results = []
         soup = BeautifulSoup(request.text, "html.parser")
         # write your ✨magical✨ code here
         jobs = soup.find_all("table", id="jobsboard")
 
         for job_section in jobs:
-            companies = job_section.find_all("span", class_="companyLink") #<class 'bs4.element.ResultSet'>
-            print(companies) #list 형식으로 나옴
-            # company = companies.find_all("h3")
+            companies_source = job_section.find_all("td", class_="company position company_and_position")
+            # print(companies_source)
 
-            positions = job_section.find_all("a", class_="preventLink") # <class 'bs4.element.ResultSet'>
-            print(positions)
-            # position = positions.find_all("h2", itemprop="title")
+            for company_source in companies_source:
+                company = company_source.h3.string
+                position = company_source.h2.string
+                regions = company_source.find_all("div")
 
-            regions = job_section.find_all("div", class_="location")
-            print(regions)
+                if len(regions) != 0:
+                    region = regions[0].string
+                    job_data = {
+                        "company": company.strip(),
+                        "region": region.strip(),
+                        "position": position.strip()
+                    }
+                    results.append(job_data)
+
+        return results
 
     else:
         print("Can't get jobs.")
 
 
-# user_language = input("Enter the programming language for the job you are looking for: ")
+user_language = input("Enter the programming language for the job you are looking for: ")
 
-extract_jobs("python")
+for result in extract_jobs(user_language):
+    print("--------------------------------------------------")
+    print(f"Company: {result['company']}\nRegion: {result['region']}\nPosition: {result['position']}")
+    print("--------------------------------------------------")
+
