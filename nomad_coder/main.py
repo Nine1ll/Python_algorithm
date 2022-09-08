@@ -36,6 +36,11 @@ def extract_jobs(term):
 
                 if len(regions) != 0:
                     region = regions[0].string
+                    if '$' in region:
+                        try:
+                            region = regions[1].string
+                        except IndexError:
+                            region = "None"
                     job_data = {
                         "company": company.strip(),
                         "region": region.strip(),
