@@ -20,7 +20,7 @@
                     <th>Position</th>
                     <th>Company</th>
                     <th>location</th>
-<!--                     <th>Link</th> -->
+                    <th>Link</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +29,7 @@
                     <td>{{job.position}}</td>
                     <td>{{job.company}}</td>
                     <td>{{job.location}}</td>
+                    <td><a href={{job.link}}>click to Apply</a></td>
 <!--         <td><a href="{{job.link}}" target="_blank">Apply now &rarr;</a></td> -->
                 </tr>
                 {% endfor %}
