@@ -3,7 +3,8 @@ from requests import get
 
 
 def extract_wwr_jobs(keyword):
-    base_url = "https://weworkremotely.com/remote-jobs/search?term="
+    url = "https://weworkremotely.com"
+    base_url = f"{url}/remote-jobs/search?term="
 
     response = get(f"{base_url}{keyword}")
     if response.status_code != 200:
@@ -25,7 +26,8 @@ def extract_wwr_jobs(keyword):
                 job_data = {
                     "company": company.string,
                     "location": region.string,
-                    "position": title.string
+                    "position": title.string,
+                    'link': f"{url}{link}"
                 }
 
                 results.append(job_data)
