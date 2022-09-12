@@ -12,12 +12,7 @@ RECORDS = ["Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234", "Enter 
 log_data = {}
 
 
-def chat_output(user_log):
-    output_string = ""
-    return output_string
-
-
-def enter_chat(user_log):
+def enter_chat(user_log, answer_list):
     '''유저가 채팅방에 들어왔을 때, 아이디를 인식해서 들어왔다고 출력해줌.'''
 
     data_split = user_log.split()
@@ -29,22 +24,24 @@ def enter_chat(user_log):
     log_data[f"{user_id}"] = user_name
     string_print = f"{log_data[f'{user_id}']}님이 들어왔습니다."
 
-    return string_print
+    return {string_print}
 
 
-def out_chat(user_log):
+def out_chat(user_log, answer_list):
     '''유저가 채팅방에 들어왔을 때, 아이디를 인식해서 나갔다고 출력해줌.'''
     data_split = user_log.split()
 
     user_id = data_split[1]
-
+    if user_id in log_data.keys(): # 유저 로그에 id가 존재하지만, 이름이 다르면 -> log_data 안에 있는 이름 교체
+        pass
     string_print = f"{log_data[f'{user_id}']}님이 나갔습니다."
 
     return string_print
 
 
-def change_chat(user_log):
+def change_chat(user_log, answer_list):
     data_split = user_log.split()
+    # 유저가 존재하는 것은 사실 -> string을 어떻게 변경할지 생각해야함.
 
     user_id = data_split[1]
     user_name = data_split[2]
@@ -56,9 +53,9 @@ def solution(record):
     answer = []
     for r in record:
         if "Enter" in r:
-            answer.append(enter_chat(r))
+            answer.append(enter_chat(r, answer))
         elif "Leave" in r:
-            answer.append(out_chat(r))
+            answer.append(out_chat(r, answer))
         elif "Change" in r:
             change_chat(r)
     print(f"user_data: {log_data}\n\n")
