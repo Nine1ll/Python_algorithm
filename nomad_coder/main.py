@@ -39,6 +39,11 @@ def export():
     save_to_file(keyword, db[keyword])
     return send_file(f"{keyword}.csv", as_attachment=True)
 
+@app.route("/other")
+def other():
+
+    return other
+
 
 app.run("0.0.0.0")
 
