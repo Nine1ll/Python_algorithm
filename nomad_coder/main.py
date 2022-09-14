@@ -41,6 +41,7 @@ def export():
 
 @app.route("/other")
 def other():
+    keyword = request.arg.get("keyword")
 
     return other
 
