@@ -6,6 +6,7 @@ def extract_remote_jobs(term):
     base_url = "https://remoteok.com"
     url = f"{base_url}/remote-{term}-jobs"
     request = get(url, headers={"User-Agent": "Nine1ll"})
+
     results = []
     if request.status_code == 200:
         soup = BeautifulSoup(request.text, "html.parser")
