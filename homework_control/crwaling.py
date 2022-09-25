@@ -1,12 +1,25 @@
 from bs4 import BeautifulSoup
-from requests import get
-# 학교 홈페이지는 req
+import time
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
-def extract_task():
-
-    base_url = 'https://home.mju.ac.kr/mainIndex/myHomeworkList.action?command=&tab=homework'
-    request = get(base_url, headers={"User-Agent": "Nine1ll"})
-    print(request.text)
+MJU_ID = "ENTER YOUR ID"
+MJU_PASSWORD = "ENTER YOUR PASSWORD"
 
 
-extract_task()
+def path_to_go():
+    driver = webdriver.Chrome('chromedriver')
+    url = 'https://home.mju.ac.kr/user/index.action'
+    driver.get(url)
+
+    driver.find_element("xpath", '//*[@id="classlogin"]/div/div[2]/div[1]/div[2]/a[1]').click()
+    time.sleep(5)
+
+    driver.find_element('name', 'id').send_keys("")
+    driver.find_element('name', 'passwrd').send_keys("")
+
+    driver.find_element('xpath', '//*[@id="loginButton"]').click()
+
+    driver.find_element('class', 'eClassList')
+
+path_to_go()
