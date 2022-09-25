@@ -3,8 +3,8 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-MJU_ID = "60211642"
-MJU_PASSWORD = "Kim98G07Y18@"
+MJU_ID = "YOUR MJU ID"
+MJU_PASSWORD = "YOUR MJU PW"
 
 
 def homework_manage():
