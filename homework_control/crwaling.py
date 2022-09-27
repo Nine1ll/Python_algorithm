@@ -5,7 +5,7 @@ from selenium.webdriver.common.keys import Keys
 
 MJU_ID = "YOUR MJU ID"
 MJU_PASSWORD = "YOUR MJU PASSWORD"
-
+# 내 강의실 있는 li 먼저 sort 해야할 것같음
 
 def homework_manage():
     """ e-class 페이지에 아이디와 비밀번호 입력 후 접속,
