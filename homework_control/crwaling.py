@@ -5,7 +5,9 @@ from selenium.webdriver.common.keys import Keys
 
 MJU_ID = "YOUR MJU ID"
 MJU_PASSWORD = "YOUR MJU PASSWORD"
-# 내 강의실 있는 li 먼저 sort 해야할 것같음
+# TODO 1: 내 강의실 있는 li 먼저 sort 해서 "과제 등록 현황"일 때 크롤링 해야함
+# TODO 2: "과제 등록 현황"에서는 과제 제출 마감시간을 알 수 없는 문제 발생
+
 
 def homework_manage():
     """ e-class 페이지에 아이디와 비밀번호 입력 후 접속,
