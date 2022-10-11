@@ -3,8 +3,8 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-MJU_ID = "YOUR MJU ID"
-MJU_PASSWORD = "YOUR MJU PASSWORD"
+MJU_ID = "Your MJU ID"
+MJU_PASSWORD = "Your MJU Password"
 # TODO 1: 내 강의실 있는 li 먼저 sort 해서 "과제 등록 현황"일 때 크롤링 해야함
 # TODO 2: "과제 등록 현황"에서는 과제 제출 마감시간을 알 수 없는 문제 발생
 
@@ -24,14 +24,25 @@ def homework_manage():
         driver.find_element('name', 'passwrd').send_keys(MJU_PASSWORD)
         time.sleep(2)
         driver.find_element('xpath', '//*[@id="loginButton"]').click()
-        request = driver.page_source
+        command = input("번호를 선택하세요.\n1. 모든 과제 불러오기 \n2. 과목별 불러오기\n")
+        if command == 1:
+            driver.find_element('xpath', '//*[@id="MENU"]/li[1]/a').click()
+            request = driver.page_source
+            soup = BeautifulSoup(request, 'html.parser')
+            subjects_html = soup.find("table", class_='list UItable')
+            # 'tr' tr의 2번째 td가 과목명, 4번째 td안에
+            # span class_="button small"안에 a에 과목으로 넘어가는 a있음
 
-        soup = BeautifulSoup(request, 'html.parser')
-        homeworks_html = soup.find("ul", class_='eClassList')
-        # print(type(homeworks_html)) # <class 'bs4.element.Tag'>
-        homeworks = homeworks_html.find_all('li')
-        print(homeworks_html)
-        # for homework in homeworks:
+        else:
+            subject_name = input("과목명을 입력하세요. (종료를 원할시 exit 입력) : ")
+        # request = driver.page_source
+        #
+        # soup = BeautifulSoup(request, 'html.parser')
+        # homeworks_html = soup.find("ul", class_='eClassList')
+        # # print(type(homeworks_html)) # <class 'bs4.element.Tag'>
+        # homeworks = homeworks_html.find_all('li')
+        # print(homeworks_html)
+        # # for homework in homeworks:
         #     try:
         #         subject_name = homework.find('strong').string.strip()
         #     except AttributeError:
